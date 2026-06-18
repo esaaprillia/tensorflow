@@ -19,6 +19,7 @@ package(
         "//tensorflow/core/common_runtime/next_pluggable_device:__subpackages__",
         "//tensorflow/core/tpu:__subpackages__",
         "//tensorflow/dtensor:__subpackages__",
+        "//quality/brain/universal/urb_model:__subpackages__",
     ]),
     licenses = ["notice"],
 )
