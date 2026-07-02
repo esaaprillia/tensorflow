@@ -34,7 +34,6 @@ limitations under the License.
 #include "absl/strings/string_view.h"
 #include "jpeglib.h"  // from @libjpeg_turbo
 #include "tensorflow/core/lib/jpeg/jpeg_mem.h"
-#include "tensorflow/core/platform/logging.h"
 #include "tensorflow/lite/c/c_api_types.h"
 #include "tensorflow/lite/c/common.h"
 #include "tensorflow/lite/kernels/internal/reference/pad.h"
@@ -42,7 +41,6 @@ limitations under the License.
 #include "tensorflow/lite/kernels/internal/runtime_shape.h"
 #include "tensorflow/lite/kernels/internal/types.h"
 #include "tensorflow/lite/profiling/time.h"
-#include "tensorflow/lite/string_type.h"
 #include "tensorflow/lite/tools/evaluation/proto/evaluation_config.pb.h"
 #include "tensorflow/lite/tools/evaluation/proto/evaluation_stages.pb.h"
 #include "tensorflow/lite/tools/evaluation/proto/preprocessing_steps.pb.h"
@@ -433,7 +431,8 @@ TfLiteStatus ImagePreprocessingStage::Run() {
           // Only validate against the target size if this is the last sizing
           // step in the preprocessing chain.
           if (image_data.data.size() !=
-              param.cropping_params().target_size().width() *
+              static_cast<size_t>(
+                  param.cropping_params().target_size().width()) *
                   param.cropping_params().target_size().height() *
                   kNumChannels) {
             LOG(ERROR)
@@ -453,7 +452,8 @@ TfLiteStatus ImagePreprocessingStage::Run() {
           // Only validate against the target size if this is the last sizing
           // step in the preprocessing chain.
           if (image_data.data.size() !=
-              param.resizing_params().target_size().width() *
+              static_cast<size_t>(
+                  param.resizing_params().target_size().width()) *
                   param.resizing_params().target_size().height() *
                   kNumChannels) {
             LOG(ERROR)
@@ -474,7 +474,8 @@ TfLiteStatus ImagePreprocessingStage::Run() {
           // Only validate against the target size if this is the last sizing
           // step in the preprocessing chain.
           if (image_data.data.size() !=
-              param.padding_params().target_size().width() *
+              static_cast<size_t>(
+                  param.padding_params().target_size().width()) *
                   param.padding_params().target_size().height() *
                   kNumChannels) {
             LOG(ERROR)
