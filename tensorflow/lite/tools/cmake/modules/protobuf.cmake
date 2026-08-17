@@ -47,4 +47,4 @@ if(NOT TARGET protobuf::libprotobuf)
   add_subdirectory(${protobuf_SOURCE_DIR} ${protobuf_BINARY_DIR})
 endif()
 
-set(Protobuf_PROTOC_EXECUTABLE protoc CACHE INTERNAL "")
+set(Protobuf_PROTOC_EXECUTABLE protoc-3.21.9.0 CACHE INTERNAL "")
