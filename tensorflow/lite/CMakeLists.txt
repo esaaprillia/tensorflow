@@ -575,7 +575,7 @@ if(TFLITE_ENABLE_XNNPACK)
   add_dependencies(xnnpack-delegate xnnpack_weight_cache_schema_cc_fbs)
   target_link_libraries(xnnpack-delegate
     Eigen3::Eigen
-    flatbuffers::flatbuffers
+    FlatBuffers::FlatBuffers
     gemmlowp::gemmlowp
     ruy::ruy
     ${XNNPACK_NEON_2_SSE}
@@ -766,7 +766,7 @@ target_link_libraries(tensorflow-lite
     absl::variant
     farmhash
     fft2d_fftsg2d
-    flatbuffers::flatbuffers
+    FlatBuffers::FlatBuffers
     gemmlowp::gemmlowp
     ml_dtypes
     ruy::ruy
